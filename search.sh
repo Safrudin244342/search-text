@@ -25,9 +25,9 @@ function setShowLines {
   len=${#lines[@]}
   let "loop = len - show"
   for (($show; $show < $loop; show=show+3)); do
-    while read -r line; do
-      echo $line
-    done < <(showLines | head -n$show)
+    for ((i=0; i <= $show; i++)); do
+        echo ${lines[$i]}
+    done
     read 
     clear
   done
