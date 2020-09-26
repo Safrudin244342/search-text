@@ -8,25 +8,19 @@ function getString {
   filename=$2
   key=$1
   while read -r line; do
-    lines[${#lines[@]}]="====================================="
-    lines[${#lines[@]}]="Search for key '$key' from '$filename'"
     lines[${#lines[@]}]=$line
   done < <(grep $filename -e "$key")
 }
 
-function showLines {
-  for ((i=0; i < ${#lines[@]}; i++)); do
-    echo ${lines[$i]}
-  done
-}
-
 function setShowLines {
-  show=10
+  show=5
   len=${#lines[@]}
   let "loop = len - show"
-  for (($show; $show < $loop; show=show+3)); do
-    for ((i=0; i <= $show; i++)); do
-        echo ${lines[$i]}
+  for (($show; $show < $loop; show++)); do
+    for ((i=0; i < $show; i++)); do
+        echo "=========================================="
+        echo "Search for '$key' from '$filename'"
+        echo "${lines[$i]}" | grep -0 "$key" --color -i
     done
     read 
     clear
@@ -34,9 +28,13 @@ function setShowLines {
 }
 
 function start {
-  clear
   getString "$key" "$filename"
-  setShowLines
+  if [ ${#lines[@]} = 0 ]; then
+    echo "Tidak ditemukan kata yang tepat"
+  else
+    clear
+    setShowLines
+  fi
 }
 
 start
