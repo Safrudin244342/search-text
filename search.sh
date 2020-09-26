@@ -13,7 +13,12 @@ function getString {
 }
 
 function setShowLines {
-  show=5
+  if [ ${#lines[@]} -gt 5 ]; then
+    show=5
+  else
+    show=1
+  fi
+
   len=${#lines[@]}
   let "loop = len - show"
   for ((i=0; i < $show; i++)); do
