@@ -16,14 +16,17 @@ function setShowLines {
   show=5
   len=${#lines[@]}
   let "loop = len - show"
-  for (($show; $show < $loop; show++)); do
-    for ((i=0; i < $show; i++)); do
-        echo "=========================================="
-        echo "Search for '$key' from '$filename'"
-        echo "${lines[$i]}" | grep -0 "$key" --color -i
-    done
-    read 
-    clear
+  for ((i=0; i < $show; i++)); do
+    echo "=========================================="
+    echo "Search for '$key' from '$filename'"
+    echo "${lines[$i]}" | grep -0 "$key" --color -i
+  done
+  
+  for ((i=$show; i < $loop; i++)); do
+    read
+    echo "=========================================="
+    echo "Search for '$key' from '$filename'"
+    echo "${lines[$i]}" | grep -0 "$key" --color -i
   done
 }
 
