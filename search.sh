@@ -24,13 +24,12 @@ function setShowLines {
   show=10
   len=${#lines[@]}
   let "loop = len - show"
-  for (($show; $show < $loop; show++)); do
+  for (($show; $show < $loop; show=show+3)); do
     while read -r line; do
       echo $line
     done < <(showLines | head -n$show)
     read 
     clear
-    let show=show+1
   done
 }
 
