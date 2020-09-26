@@ -3,5 +3,5 @@
 **How to use**
 
 ```
-./search "key" "filename"
+./search.sh "key" "filename"
 ```
