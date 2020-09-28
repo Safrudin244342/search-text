@@ -41,7 +41,6 @@ function start {
     if [ ${#lines[@]} = 0 ]; then
       echo "Tidak ditemukan kata yang tepat"
     else
-      clear
       setShowLines
     fi
   else
