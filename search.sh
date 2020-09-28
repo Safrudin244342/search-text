@@ -36,12 +36,16 @@ function setShowLines {
 }
 
 function start {
-  getString "$key" "$filename"
-  if [ ${#lines[@]} = 0 ]; then
-    echo "Tidak ditemukan kata yang tepat"
+  if [ -f "$filename" ]; then
+    getString "$key" "$filename"
+    if [ ${#lines[@]} = 0 ]; then
+      echo "Tidak ditemukan kata yang tepat"
+    else
+      clear
+      setShowLines
+    fi
   else
-    clear
-    setShowLines
+    echo "$filename tidak ditemukan"
   fi
 }
 
