@@ -9,7 +9,7 @@ function getString {
   key=$1
   while read -r line; do
     lines[${#lines[@]}]=$line
-  done < <(grep $filename -e "$key")
+  done < <(grep $filename -e "$key" -n)
 }
 
 function setShowLines {
